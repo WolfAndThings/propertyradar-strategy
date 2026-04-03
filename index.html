@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PropertyRadar — SEO · GEO · AEO Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --border: #e2e0d8;
+    --border-strong: #c8c5bb;
+    --text: #1a1916;
+    --muted: #6b6960;
+    --faint: #9e9b92;
+    --accent: #1d4ed8;
+    --accent-bg: #eff6ff;
+    --accent-text: #1e40af;
+    --red: #dc2626;
+    --red-bg: #fef2f2;
+    --red-text: #991b1b;
+    --amber: #d97706;
+    --amber-bg: #fffbeb;
+    --amber-text: #92400e;
+    --green: #059669;
+    --green-bg: #f0fdf4;
+    --green-text: #065f46;
+    --purple: #7c3aed;
+    --purple-bg: #f5f3ff;
+    --purple-text: #4c1d95;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; scroll-padding-top: 72px; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* — HEADER — */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  .site-logo {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .site-logo span { color: var(--accent); }
+  .header-meta {
+    font-size: 0.75rem;
+    color: var(--faint);
+  }
+
+  /* — HERO — */
+  .hero {
+    background: var(--text);
+    color: #fff;
+    padding: 4rem 2rem 3.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 80% 50%, rgba(29,78,216,0.25) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 860px; margin: 0 auto; position: relative; }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 1rem;
+  }
+  .hero-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+  .hero h1 em { font-style: italic; color: rgba(255,255,255,0.55); }
+  .hero-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    max-width: 540px;
+    line-height: 1.7;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .hero-stat-val {
+    font-family: var(--serif);
+    font-size: 1.75rem;
+    color: #fff;
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+
+  /* — LAYOUT — */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+  .section { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+
+  .section-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: 1.75rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  .section-desc {
+    font-size: 0.95rem;
+    color: var(--muted);
+    max-width: 600px;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  /* — AUDIT SCORES — */
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 2rem;
+  }
+  @media (max-width: 560px) { .score-grid { grid-template-columns: repeat(2, 1fr); } }
+  .score-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .score-num {
+    font-family: var(--serif);
+    font-size: 2rem;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .score-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--faint);
+  }
+  .s-red { color: var(--red); }
+  .s-amber { color: var(--amber); }
+  .s-green { color: var(--green); }
+
+  /* — FINDINGS — */
+  .finding-group { margin-bottom: 1.5rem; }
+  .finding-group-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 0.75rem;
+  }
+  .finding {
+    display: flex;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    margin-bottom: 8px;
+    align-items: flex-start;
+  }
+  .finding-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-weight: 600;
+  }
+  .fi-r { background: var(--red-bg); color: var(--red-text); }
+  .fi-a { background: var(--amber-bg); color: var(--amber-text); }
+  .fi-g { background: var(--green-bg); color: var(--green-text); }
+  .finding-body { flex: 1; }
+  .finding-title { font-size: 0.9rem; font-weight: 500; margin-bottom: 3px; }
+  .finding-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+
+  /* — PILLARS — */
+  .pillar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 12px;
+  }
+  .pillar-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .pillar-title { font-size: 0.95rem; font-weight: 500; flex: 1; min-width: 180px; }
+  .badge {
+    font-size: 0.68rem;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .badge-red { background: var(--red-bg); color: var(--red-text); }
+  .badge-amber { background: var(--amber-bg); color: var(--amber-text); }
+  .badge-green { background: var(--green-bg); color: var(--green-text); }
+  .badge-blue { background: var(--accent-bg); color: var(--accent-text); }
+  .badge-purple { background: var(--purple-bg); color: var(--purple-text); }
+  .pillar-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+  .pillar-list { list-style: none; margin-top: 10px; }
+  .pillar-list li {
+    font-size: 0.82rem;
+    color: var(--muted);
+    padding: 4px 0 4px 16px;
+    position: relative;
+    border-top: 1px solid var(--bg);
+  }
+  .pillar-list li::before { content: '→'; position: absolute; left: 0; color: var(--faint); }
+
+  /* — KEYWORD TABLE — */
+  .table-wrap { overflow-x: auto; margin-top: 10px; border-radius: 10px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.83rem; background: var(--surface); }
+  th {
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--faint);
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+  td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--bg); }
+  .vol { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 0.7rem; font-weight: 500; }
+  .vol-h { background: var(--accent-bg); color: var(--accent-text); }
+  .vol-m { background: var(--amber-bg); color: var(--amber-text); }
+  .vol-l { background: var(--bg); color: var(--faint); border: 1px solid var(--border); }
+  .diff-wrap { width: 64px; height: 5px; background: var(--border); border-radius: 3px; }
+  .diff-bar { height: 5px; border-radius: 3px; }
+
+  /* — GEO — */
+  .geo-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 14px;
+  }
+  .geo-card-title { font-size: 0.95rem; font-weight: 500; margin-bottom: 8px; }
+  .geo-card-body { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+  .code-block {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-size: 0.78rem;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    color: var(--muted);
+    line-height: 1.8;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .tag-row { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag-pill {
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--accent-bg);
+    color: var(--accent-text);
+    font-weight: 500;
+  }
+
+  /* — SCHEMA — */
+  .schema-block {
+    background: #0f172a;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-top: 10px;
+    font-size: 0.78rem;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    line-height: 1.9;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .sk { color: #7dd3fc; }
+  .sv { color: #86efac; }
+  .sp { color: #f9a8d4; }
+
+  /* — ROADMAP — */
+  .phase { border: 1px solid var(--border); border-radius: 12px; margin-bottom: 14px; overflow: hidden; }
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+  .phase-num {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .ph1 { background: var(--red-bg); color: var(--red-text); }
+  .ph2 { background: var(--amber-bg); color: var(--amber-text); }
+  .ph3 { background: var(--accent-bg); color: var(--accent-text); }
+  .phase-title { font-size: 0.95rem; font-weight: 500; flex: 1; }
+  .phase-period { font-size: 0.78rem; color: var(--faint); }
+  .phase-body { background: var(--surface); }
+  .task {
+    display: flex;
+    gap: 10px;
+    padding: 11px 1.25rem;
+    border-bottom: 1px solid var(--bg);
+    align-items: flex-start;
+  }
+  .task:last-child { border-bottom: none; }
+  .task-tag {
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+    flex-shrink: 0;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-top: 1px;
+  }
+  .tt-seo { background: var(--accent-bg); color: var(--accent-text); }
+  .tt-geo { background: var(--green-bg); color: var(--green-text); }
+  .tt-aeo { background: var(--amber-bg); color: var(--amber-text); }
+  .tt-tech { background: var(--bg); color: var(--faint); border: 1px solid var(--border); }
+  .task-text { font-size: 0.88rem; color: var(--text); font-weight: 500; }
+  .task-impact { font-size: 0.78rem; color: var(--faint); margin-top: 2px; line-height: 1.5; }
+
+  /* — OUTCOME STRIP — */
+  .outcome-strip {
+    background: var(--text);
+    color: #fff;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin-top: 2rem;
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .outcome-val {
+    font-family: var(--serif);
+    font-size: 2rem;
+    line-height: 1;
+    color: #fff;
+  }
+  .outcome-label { font-size: 0.72rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
+
+  /* — NAV TABS (sticky side nav) — */
+  .page-layout { display: flex; gap: 3rem; max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+  .side-nav {
+    flex-shrink: 0;
+    width: 160px;
+    padding-top: 2.5rem;
+    position: sticky;
+    top: 72px;
+    height: fit-content;
+  }
+  .side-nav a {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--faint);
+    text-decoration: none;
+    padding: 6px 8px 6px 12px;
+    border-left: 2px solid var(--border);
+    margin-bottom: 2px;
+    transition: color .15s, border-color .15s, background .15s;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 0 4px 4px 0;
+  }
+  .side-nav a:hover { color: var(--text); border-left-color: var(--border-strong); background: rgba(0,0,0,0.04); }
+  .side-nav a.active { color: var(--text); border-left-color: var(--text); font-weight: 500; background: rgba(0,0,0,0.04); }
+  @media (max-width: 680px) { .side-nav { display: none; } .page-layout { padding: 0 1rem; } }
+
+  .main-content { flex: 1; min-width: 0; }
+
+  /* — FOOTER — */
+  .site-footer {
+    margin-top: 4rem;
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--faint);
+  }
+  .site-footer strong { color: var(--muted); }
+
+  /* — PRINT — */
+  @media print {
+    .site-header { position: static; }
+    .side-nav { display: none; }
+    .page-layout { display: block; padding: 0; }
+    .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  /* — PASSWORD GATE — */
+  #pw-gate {
+    position: fixed;
+    inset: 0;
+    background: #1a1916;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    flex-direction: column;
+    gap: 0;
+  }
+  #pw-gate.hidden { display: none; }
+  .pw-box {
+    background: #242320;
+    border: 1px solid #3a3835;
+    border-radius: 16px;
+    padding: 2.5rem 2.5rem 2rem;
+    width: 100%;
+    max-width: 360px;
+    text-align: center;
+  }
+  .pw-lock {
+    width: 48px;
+    height: 48px;
+    background: #2e2c29;
+    border: 1px solid #3a3835;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+    font-size: 20px;
+  }
+  .pw-title {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pw-sub {
+    font-size: 0.82rem;
+    color: #6b6960;
+    margin-bottom: 1.75rem;
+    line-height: 1.5;
+  }
+  .pw-input-wrap { position: relative; margin-bottom: 10px; }
+  .pw-input {
+    width: 100%;
+    background: #1a1916;
+    border: 1px solid #3a3835;
+    border-radius: 8px;
+    padding: 11px 44px 11px 14px;
+    font-size: 0.95rem;
+    font-family: 'DM Sans', sans-serif;
+    color: #fff;
+    letter-spacing: 0.1em;
+    outline: none;
+    transition: border-color .15s;
+    -webkit-text-security: disc;
+    text-security: disc;
+  }
+  .pw-input:focus { border-color: #555; }
+  .pw-input.error { border-color: #dc2626; animation: shake .3s ease; }
+  .pw-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #6b6960;
+    font-size: 14px;
+    padding: 4px;
+    line-height: 1;
+  }
+  .pw-toggle:hover { color: #9e9b92; }
+  .pw-btn {
+    width: 100%;
+    background: #fff;
+    color: #1a1916;
+    border: none;
+    border-radius: 8px;
+    padding: 11px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: background .15s, transform .1s;
+    margin-top: 4px;
+  }
+  .pw-btn:hover { background: #f0f0ed; }
+  .pw-btn:active { transform: scale(0.98); }
+  .pw-error {
+    font-size: 0.78rem;
+    color: #dc2626;
+    margin-top: 8px;
+    min-height: 18px;
+    text-align: center;
+  }
+  .pw-footer {
+    font-size: 0.72rem;
+    color: #3a3835;
+    margin-top: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+  #pw-content { display: none; }
+  #pw-content.visible { display: block; }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE -->
+<div id="pw-gate">
+  <div class="pw-box">
+    <div class="pw-lock">&#128274;</div>
+    <div class="pw-title">Strategy Report</div>
+    <p class="pw-sub">PropertyRadar &middot; SEO &middot; GEO &middot; AEO<br>Enter the password to access this report.</p>
+    <div class="pw-input-wrap">
+      <input
+        class="pw-input"
+        id="pw-input"
+        type="password"
+        placeholder="Enter password"
+        autocomplete="current-password"
+        onkeydown="if(event.key==='Enter') checkPw()"
+      />
+      <button class="pw-toggle" onclick="togglePwVis()" title="Show/hide password" id="pw-vis-btn">&#128065;</button>
+    </div>
+    <div class="pw-error" id="pw-error"></div>
+    <button class="pw-btn" onclick="checkPw()">Unlock report &rarr;</button>
+    <div class="pw-footer">PROPERTYRADAR &middot; CONFIDENTIAL</div>
+  </div>
+</div>
+
+<!-- PROTECTED CONTENT -->
+<div id="pw-content">
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="site-logo">Property<span>Radar</span> Strategy</div>
+  <div class="header-meta">SEO &middot; GEO &middot; AEO &middot; April 2026 &middot; SEMrush + live crawl data</div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="hero-dot"></div>
+      SEMrush + live crawl &middot; 1,279 pages audited &middot; April 2026
+    </div>
+    <h1>SEO, GEO &amp; AEO Strategy<br><em>for PropertyRadar</em></h1>
+    <p class="hero-sub">A full-site audit and 90-day growth plan covering organic search, AI citation optimization, and answer engine visibility &mdash; built on SEMrush data and live crawl analysis.</p>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-val">16.1K</div>
+        <div class="hero-stat-label">Monthly organic traffic</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">7.6K</div>
+        <div class="hero-stat-label">Organic keywords</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">786K</div>
+        <div class="hero-stat-label">Monthly impressions</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">1.3%</div>
+        <div class="hero-stat-label">Average CTR</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE LAYOUT -->
+<div class="page-layout" style="padding-top: 2rem;">
+  <nav class="side-nav" id="side-nav">
+    <a href="#baseline">SEMrush baseline</a>
+    <a href="#audit">Site audit</a>
+    <a href="#seo">SEO plan</a>
+    <a href="#keywords">Keyword map</a>
+    <a href="#geo">GEO strategy</a>
+    <a href="#aeo">AEO strategy</a>
+    <a href="#roadmap">90-day roadmap</a>
+  </nav>
+
+  <main class="main-content">
+
+    <!-- — BASELINE — -->
+    <section class="section" id="baseline">
+      <div class="section-eyebrow">Section 01</div>
+      <div class="section-title">SEMrush baseline</div>
+      <p class="section-desc">Current state as of April 2, 2026 &mdash; pulled from SEMrush, Google Search Console, and Google Analytics. These are the numbers we&rsquo;re moving.</p>
+
+      <div class="score-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="score-card"><div class="score-num" style="color: var(--accent);">35</div><div class="score-label">Authority score</div></div>
+        <div class="score-card"><div class="score-num" style="color: var(--accent);">117K</div><div class="score-label">SEMrush rank</div></div>
+        <div class="score-card"><div class="score-num s-amber">83%</div><div class="score-label">Site health</div></div>
+        <div class="score-card"><div class="score-num s-green">1.5K</div><div class="score-label">Ref. domains</div></div>
+      </div>
+
+      <div style="font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--faint); margin-bottom: 0.75rem;">Organic search &mdash; GSC data (Mar 4 &ndash; Apr 3, 2026)</div>
+      <div class="table-wrap" style="margin-bottom: 1.5rem;">
+        <table>
+          <thead><tr><th>Metric</th><th>Value</th><th>Trend</th><th>What it means</th></tr></thead>
+          <tbody>
+            <tr><td>Total clicks</td><td><strong>9.9K</strong></td><td><span class="vol vol-h">+1.47%</span></td><td>Stable but low relative to impressions</td></tr>
+            <tr><td>Total impressions</td><td><strong>786K</strong></td><td><span class="badge badge-red" style="font-size:0.68rem;">-5.07%</span></td><td>Declining &mdash; losing visibility on SERPs</td></tr>
+            <tr><td>Average CTR</td><td><strong>1.3%</strong></td><td><span class="vol vol-h">+6.89%</span></td><td>Far below the 3&ndash;5% benchmark &mdash; title/description optimization needed</td></tr>
+            <tr><td>Average position</td><td><strong>10.3</strong></td><td><span class="badge badge-red" style="font-size:0.68rem;">&darr;5.58 (worsened)</span></td><td>Slipped to page 2 &mdash; was ~4.7, now 10.3</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--faint); margin-bottom: 0.75rem;">AI search visibility &mdash; current baseline</div>
+      <div class="table-wrap" style="margin-bottom: 1.5rem;">
+        <table>
+          <thead><tr><th>AI system</th><th>Mentions</th><th>Cited pages</th><th>Assessment</th></tr></thead>
+          <tbody>
+            <tr><td>Google AI Overview</td><td><strong>243</strong></td><td><strong>121</strong></td><td><span class="vol vol-h">Strongest channel</span></td></tr>
+            <tr><td>Google AI Mode</td><td><strong>135</strong></td><td><strong>113</strong></td><td><span class="vol vol-m">Solid base</span></td></tr>
+            <tr><td>Gemini</td><td><strong>104</strong></td><td><strong>34</strong></td><td><span class="vol vol-m">Many mentions, few citations</span></td></tr>
+            <tr><td>ChatGPT</td><td><strong>89</strong></td><td><strong>154</strong></td><td><span class="vol vol-h">High citation rate</span></td></tr>
+            <tr style="background: var(--bg);"><td><strong>Total</strong></td><td><strong>571</strong></td><td><strong>252</strong></td><td>AI Visibility Score: <strong>32</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--faint); margin-bottom: 0.75rem;">Top ranking keywords &mdash; position tracking</div>
+      <div class="table-wrap" style="margin-bottom: 1.5rem;">
+        <table>
+          <thead><tr><th>Keyword</th><th>Position</th><th>Change</th><th>Visibility</th></tr></thead>
+          <tbody>
+            <tr><td>driving for dollars</td><td><strong style="color:var(--green);">1</strong></td><td>&mdash;</td><td>10%</td></tr>
+            <tr><td>property search solutions</td><td><strong style="color:var(--green);">1</strong></td><td>&mdash;</td><td>10%</td></tr>
+            <tr><td>viral content patterns in real estate 2025</td><td><strong style="color:var(--green);">1</strong></td><td>&mdash;</td><td>10%</td></tr>
+            <tr><td>absentee owner list</td><td><strong style="color:var(--green);">2</strong></td><td><span style="color:var(--red);">&darr;1</span></td><td>3.43%</td></tr>
+            <tr><td>commercial real estate 101</td><td><strong style="color:var(--green);">2</strong></td><td><span style="color:var(--red);">&darr;1</span></td><td>3.43%</td></tr>
+            <tr><td>commercial real estate database</td><td><strong style="color:var(--amber);">6</strong></td><td><span style="color:var(--red);">&darr;23</span></td><td>1.13%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--faint); margin-bottom: 0.75rem;">Top pages by traffic &mdash; GA4 (Mar 4 &ndash; Apr 2, 2026)</div>
+      <div class="table-wrap" style="margin-bottom: 1.5rem;">
+        <table>
+          <thead><tr><th>Page</th><th>Pageviews</th><th>Engagement rate</th><th>Assessment</th></tr></thead>
+          <tbody>
+            <tr><td>/lp/divorce-leads</td><td><strong>39,333</strong></td><td><span style="color:var(--red);font-weight:500;">7.56%</span></td><td>Highest traffic, terrible engagement &mdash; paid traffic bouncing</td></tr>
+            <tr><td>/</td><td><strong>32,233</strong></td><td><span style="color:var(--green);font-weight:500;">69.72%</span></td><td>Homepage performing well</td></tr>
+            <tr><td>/login</td><td><strong>26,746</strong></td><td><span style="color:var(--green);font-weight:500;">91.7%</span></td><td>Existing users &mdash; healthy retention signal</td></tr>
+            <tr><td>/lp/eviction-leads</td><td><strong>21,749</strong></td><td><span style="color:var(--red);font-weight:500;">11.63%</span></td><td>Paid LP &mdash; low engagement, high bounce</td></tr>
+            <tr><td>/register</td><td><strong>8,529</strong></td><td><span style="color:var(--green);font-weight:500;">83.96%</span></td><td>Strong conversion page</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="finding">
+        <div class="finding-icon fi-r">!</div>
+        <div class="finding-body">
+          <div class="finding-title">The core problem: 786K impressions, 1.3% CTR, average position 10.3</div>
+          <div class="finding-desc">PropertyRadar is visible on 786K searches per month but sitting on page 2 for almost everything. Based on standard CTR curves, moving from position 10.3 to 7.0 on 786K impressions could approximately double organic clicks &mdash; before any new pages are even created. The strategy below targets exactly this: schema for rich results (higher CTR), content depth for ranking improvements (higher position), and GEO/AEO for AI citation visibility.</div>
+        </div>
+      </div>
+
+      <div class="finding" style="margin-top: 8px;">
+        <div class="finding-icon fi-a">~</div>
+        <div class="finding-body">
+          <div class="finding-title">GSC top queries are all brand terms &mdash; non-brand organic is weak</div>
+          <div class="finding-desc">The top 4 GSC queries are &ldquo;propertyradar&rdquo;, &ldquo;property radar&rdquo;, &ldquo;propertyradar login&rdquo;, and &ldquo;property radar login&rdquo; &mdash; accounting for 4.8K of 9.9K total clicks (48%). Non-brand discovery keywords like &ldquo;motivated seller leads&rdquo;, &ldquo;foreclosure leads&rdquo;, and &ldquo;skip tracing software&rdquo; are barely generating clicks. This is the gap the SEO and content strategy below is designed to close.</div>
+        </div>
+      </div>
+
+      <div class="finding" style="margin-top: 8px;">
+        <div class="finding-icon fi-a">~</div>
+        <div class="finding-body">
+          <div class="finding-title">Paid landing pages are the highest-traffic pages but engagement is terrible</div>
+          <div class="finding-desc">/lp/divorce-leads (39K views, 7.56% engagement) and /lp/eviction-leads (21K views, 11.63% engagement) are burning ad spend on pages people immediately leave. These aren&rsquo;t an SEO problem &mdash; but they show why organic content that actually engages visitors is critical. The homepage (69.72% engagement) and /register (83.96%) prove the product converts when the right people arrive.</div>
+        </div>
+      </div>
+
+      <div class="finding" style="margin-top: 8px;">
+        <div class="finding-icon fi-g">&check;</div>
+        <div class="finding-body">
+          <div class="finding-title">AI visibility already at 32 with 571 mentions &mdash; not starting from zero</div>
+          <div class="finding-desc">PropertyRadar is already cited across ChatGPT (89 mentions), AI Overviews (243), AI Mode (135), and Gemini (104). ChatGPT has the highest citation-to-mention ratio (154 cited pages from 89 mentions), meaning ChatGPT is pulling deeply from PropertyRadar content. The GEO and AEO strategies below aim to push the AI Visibility Score from 32 to 60+ by giving AI systems more structured, citable content.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- — AUDIT — -->
+    <section class="section" id="audit">
+      <div class="section-eyebrow">Section 02</div>
+      <div class="section-title">Site audit</div>
+      <p class="section-desc">What the live crawl + SEMrush data revealed. 1,279 pages crawled, 83% site health score, 18 errors, 1,156 warnings.</p>
+
+      <div class="score-grid">
+        <div class="score-card"><div class="score-num s-amber">2/10</div><div class="score-label">Structured data</div></div>
+        <div class="score-card"><div class="score-num s-amber">4/10</div><div class="score-label">Technical SEO</div></div>
+        <div class="score-card"><div class="score-num s-amber">5/10</div><div class="score-label">Content depth</div></div>
+        <div class="score-card"><div class="score-num s-green">7/10</div><div class="score-label">Site architecture</div></div>
+        <div class="score-card"><div class="score-num s-red">2/10</div><div class="score-label">AI/LLM readiness</div></div>
+        <div class="score-card"><div class="score-num s-red">0/10</div><div class="score-label">GEO pages</div></div>
+      </div>
+
+      <div class="finding-group">
+        <div class="finding-group-label">Critical issues &mdash; from live crawl + AEO/GEO evaluation</div>
+
+        <div class="finding">
+          <div class="finding-icon fi-r">!</div>
+          <div class="finding-body">
+            <div class="finding-title">Structured data is almost entirely missing across the site</div>
+            <div class="finding-desc">The main site (all core pages) has <code>jsonLd: null</code> &mdash; zero schema. The blog has one exception: the 5.0 launch post has FAQPage schema, which proves the CMS can support it. But that&rsquo;s 1 page out of hundreds. The homepage, pricing page, all /plays/ pages, all /features/ pages, and the /built-for/ section have no structured data at all. This is the single highest-ROI fix available.</div>
+          </div>
+        </div>
+
+        <div class="finding">
+          <div class="finding-icon fi-r">!</div>
+          <div class="finding-body">
+            <div class="finding-title">No FAQ hub &mdash; the content AI systems depend on most doesn&rsquo;t exist</div>
+            <div class="finding-desc">There is no standalone FAQ section or FAQ page on the site. AI answer engines specifically pull from question-and-answer formatted content. Questions like &ldquo;How does PropertyRadar compare to PropStream?&rdquo;, &ldquo;What data does PropertyRadar have?&rdquo;, and &ldquo;How do I find preforeclosure leads?&rdquo; have no structured home. A dedicated FAQ hub targeting these questions would directly feed AI citations and Google featured snippets.</div>
+          </div>
+        </div>
+
+        <div class="finding">
+          <div class="finding-icon fi-r">!</div>
+          <div class="finding-body">
+            <div class="finding-title">Video testimonials are invisible to AI crawlers</div>
+            <div class="finding-desc">Social proof exists but it&rsquo;s locked inside Wistia video embeds and carousels. AI systems can&rsquo;t read video content. Written case studies &mdash; &ldquo;How [investor type] closed X deals using PropertyRadar in 90 days&rdquo; &mdash; are far more effective for GEO than video testimonials. The proof exists; it just needs to be in text that machines can read and cite.</div>
+          </div>
+        </div>
+
+        <div class="finding">
+          <div class="finding-icon fi-r">!</div>
+          <div class="finding-body">
+            <div class="finding-title">No geographic landing pages exist anywhere on the site</div>
+            <div class="finding-desc">Real estate is inherently local. Competitors who build state/city pages for &ldquo;foreclosure leads California&rdquo; or &ldquo;motivated sellers Texas&rdquo; capture all geo-intent traffic. PropertyRadar has zero of these pages today &mdash; a major gap given the platform covers all 50 states.</div>
+          </div>
+        </div>
+
+        <div class="finding">
+          <div class="finding-icon fi-r">!</div>
+          <div class="finding-body">
+            <div class="finding-title">Homepage cache-control: s-maxage=5, max-age=5 (five seconds)</div>
+            <div class="finding-desc">Every /plays/ page correctly uses s-maxage=36000 (10 hours). The homepage uses 5 seconds &mdash; meaning every fresh visitor hits the origin server. This kills TTFB and Core Web Vitals. It&rsquo;s a one-line Cloudflare cache rule fix.</div>
+          </div>
+        </div>
+
+        <div class="finding">
+          <div class="finding-icon fi-a">~</div>
+          <div class="finding-body">
+            <div class="finding-title">Blog has 660+ posts but skews heavily toward listicles</div>
+            <div class="finding-desc">The blog is active and large (66 paginated pages). But the format is almost entirely &ldquo;5 Ways to&hellip;&rdquo; and &ldquo;6 Common Mistakes&hellip;&rdquo; style posts. For AEO and GEO, what&rsquo;s needed is 2,000+ word pillar guides that comprehensively answer specific questions. &ldquo;The Complete Guide to Preforeclosure Investing&rdquo; will get cited by AI systems. &ldquo;5 Preforeclosure Tips&rdquo; won&rsquo;t.</div>
+          </div>
+        </div>
+
+        <div class="finding">
+          <div class="finding-icon fi-a">~</div>
+          <div class="finding-body">
+            <div class="finding-title">Blog author metadata is null &mdash; no authorship signals anywhere</div>
+            <div class="finding-desc">Every blog post crawled returned <code>author: null</code>. AI systems and Google both use authorship signals to assess content authority. Adding author bylines, author schema (Person type), and author bio pages would immediately improve E-E-A-T signals across 660+ existing posts.</div>
+          </div>
+        </div>
+
+        <div class="finding">
+          <div class="finding-icon fi-a">~</div>
+          <div class="finding-body">
+            <div class="finding-title">Proprietary terms lack standalone definition pages</div>
+            <div class="finding-desc">OwnerGraph&trade;, &ldquo;Hyperlocal Lead Generation,&rdquo; &ldquo;Distress Scoring,&rdquo; and &ldquo;Good Neighbor Marketing&rdquo; are all PropertyRadar-owned concepts. But none have dedicated definition pages. If someone asks an AI &ldquo;what is OwnerGraph,&rdquo; there&rsquo;s nothing authoritative to cite. PropertyRadar invented these terms and should own their definitions on the web.</div>
+          </div>
+        </div>
+
+        <div class="finding">
+          <div class="finding-icon fi-a">~</div>
+          <div class="finding-body">
+            <div class="finding-title">Site nav stripped to 2 items: Pricing + Try it Free</div>
+            <div class="finding-desc">Internal linking is starved. PageRank can&rsquo;t flow to /plays/, /built-for/, or /features/. Every important page is effectively orphaned from the homepage&rsquo;s authority. A structured nav with persona and feature dropdowns is essential.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="finding-group">
+        <div class="finding-group-label">Strong assets to build on</div>
+
+        <div class="finding">
+          <div class="finding-icon fi-g">&check;</div>
+          <div class="finding-body">
+            <div class="finding-title">Comparison pages already exist &mdash; and they&rsquo;re the highest-value AEO asset on the site</div>
+            <div class="finding-desc">The /compare/ section (PropertyRadar vs PropStream, vs DealMachine, vs BatchLeads) is exactly what AI systems pull when someone asks &ldquo;PropertyRadar vs PropStream.&rdquo; These pages are already well-structured. The priority is expanding them &mdash; more data points, more specific feature tables, more head-to-head specifics.</div>
+          </div>
+        </div>
+
+        <div class="finding">
+          <div class="finding-icon fi-g">&check;</div>
+          <div class="finding-body">
+            <div class="finding-title">Excellent programmatic structure: /plays/{persona}/{use-case}</div>
+            <div class="finding-desc">30+ play pages across 5 personas. With deeper content and schema markup, each can rank for its specific use-case query. The architecture is exactly right &mdash; it just needs content depth and technical signals to perform.</div>
+          </div>
+        </div>
+
+        <div class="finding">
+          <div class="finding-icon fi-g">&check;</div>
+          <div class="finding-body">
+            <div class="finding-title">OwnerGraph&trade; and &ldquo;Hyperlocal Lead Generation&rdquo; are owned, defensible brand terms</div>
+            <div class="finding-desc">PropertyRadar invented these terms. &ldquo;Hyperlocal Lead Generation&rdquo; is even the blog&rsquo;s stated focus. AI systems need a page to cite as the canonical definition. Build dedicated definition pages with DefinedTerm schema and these terms become permanently associated with PropertyRadar in AI responses.</div>
+          </div>
+        </div>
+
+        <div class="finding">
+          <div class="finding-icon fi-g">&check;</div>
+          <div class="finding-body">
+            <div class="finding-title">Strong, quotable platform stats that AI systems can cite</div>
+            <div class="finding-desc">$250B+ completed transactions, 160M+ properties, 1B+ phones &amp; emails, 19 years in business (founded 2007) &mdash; these numbers are citable and quotable. They need to be more consistent across pages and paired with schema markup so AI systems can reference them accurately.</div>
+          </div>
+        </div>
+
+        <div class="finding">
+          <div class="finding-icon fi-g">&check;</div>
+          <div class="finding-body">
+            <div class="finding-title">HubSpot CMS + Cloudflare &mdash; strong foundation for programmatic scale</div>
+            <div class="finding-desc">HubDB allows table-driven programmatic page generation. The 250-page geo matrix and author schema rollout across 660+ blog posts can both be done at the template level &mdash; no page-by-page editing required.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- — SEO — -->
+    <section class="section" id="seo">
+      <div class="section-eyebrow">Section 03</div>
+      <div class="section-title">SEO plan</div>
+      <p class="section-desc">Organic search strategy organized by impact tier. Technical fixes first, then content expansion, then scale.</p>
+
+      <div style="font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--faint); margin-bottom: 0.75rem;">Pillar 1 &mdash; Technical foundation</div>
+
+      <div class="pillar">
+        <div class="pillar-header">
+          <div class="pillar-title">Add JSON-LD structured data to every page type</div>
+          <span class="badge badge-red">High impact</span>
+          <span class="badge badge-green">Low effort</span>
+        </div>
+        <p class="pillar-desc">Currently zero JSON-LD across all 1,279 crawled pages (one blog post excepted). Adding SoftwareApplication to the homepage, FAQPage to play pages, BreadcrumbList sitewide, Organization with sameAs social links, and WebPage to all content pages is the single highest-ROI action available. One HubSpot template change cascades to all pages instantly.</p>
+        <ul class="pillar-list">
+          <li>SoftwareApplication schema on homepage &mdash; enables rich results in Google &amp; AI systems</li>
+          <li>FAQPage schema on every /plays/{persona}/{play} page</li>
+          <li>BreadcrumbList on all subpages &mdash; signals content hierarchy to all crawlers</li>
+          <li>Organization schema &mdash; ties brand identity for Gemini, ChatGPT, and Perplexity</li>
+          <li>HowTo schema for tutorial and guide content</li>
+          <li>Dataset schema for any market data or research reports published</li>
+        </ul>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-header">
+          <div class="pillar-title">Fix homepage caching: 5 seconds &rarr; 3,600 seconds edge cache</div>
+          <span class="badge badge-red">High impact</span>
+          <span class="badge badge-green">Low effort</span>
+        </div>
+        <p class="pillar-desc">The homepage is set to s-maxage=5, max-age=5. All /plays/ pages correctly use s-maxage=36000. The homepage should be at minimum s-maxage=3600. Every fresh visitor currently hits the origin server, killing TTFB and Core Web Vitals scores &mdash; which directly impact organic rankings. This is a one-line Cloudflare cache rule.</p>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-header">
+          <div class="pillar-title">Rebuild site navigation to pass PageRank to key content pages</div>
+          <span class="badge badge-red">High impact</span>
+          <span class="badge badge-amber">Medium effort</span>
+        </div>
+        <p class="pillar-desc">Current navigation has 2 links. All internal link equity is starving /features/, /built-for/, /plays/, and the blog. Add a structured nav with persona sub-links, feature categories, and use-case clusters. Every page should be reachable within 3 clicks from the homepage.</p>
+        <ul class="pillar-list">
+          <li>Solutions dropdown organized by persona type (Investors, Agents, Mortgage, Services)</li>
+          <li>Features mega-menu linking to all feature sub-pages</li>
+          <li>Resources section linking to blog, plays library, case studies</li>
+          <li>Footer with persona links, feature links, and company links</li>
+        </ul>
+      </div>
+
+      <div style="font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--faint); margin-bottom: 0.75rem; margin-top: 1.5rem;">Pillar 2 &mdash; Content depth</div>
+
+      <div class="pillar">
+        <div class="pillar-header">
+          <div class="pillar-title">Expand /plays/ pages from ~400 words to 1,500+ words each</div>
+          <span class="badge badge-red">High impact</span>
+          <span class="badge badge-amber">Medium effort</span>
+        </div>
+        <p class="pillar-desc">Each /plays/ page has excellent structure but insufficient depth to rank. Add: &ldquo;Why this works in today&rsquo;s market,&rdquo; a step-by-step execution guide, common objections and how to handle them, success metrics, and an FAQ section with schema. Target 1,500&ndash;2,000 words per play page. Priority order: preforeclosures, probate, expired listings, cash-out refinance, likely sellers.</p>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-header">
+          <div class="pillar-title">Build /vs/ competitor comparison pages</div>
+          <span class="badge badge-red">High impact</span>
+          <span class="badge badge-amber">Medium effort</span>
+        </div>
+        <p class="pillar-desc">The highest-converting keyword segment is bottom-of-funnel comparison queries from people who are ready to buy. Build comparison pages for: PropertyRadar vs PropStream, vs BatchLeads, vs BatchSkipTracing, vs Landvoice, vs REIPro. Include honest feature comparison tables, pricing transparency, and use-case specific breakdowns by persona.</p>
+        <ul class="pillar-list">
+          <li>Target &ldquo;best [competitor] alternative&rdquo; query variants</li>
+          <li>Feature comparison tables with honest differentiation</li>
+          <li>Pricing transparency sections (even approximate ranges)</li>
+          <li>Persona-specific comparison sections (how each platform serves investors vs. agents)</li>
+        </ul>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-header">
+          <div class="pillar-title">Refocus the blog from listicles to pillar guides</div>
+          <span class="badge badge-red">High impact</span>
+          <span class="badge badge-amber">Medium effort</span>
+        </div>
+        <p class="pillar-desc">The blog exists and is active with 660+ posts &mdash; but almost every post follows the &ldquo;5 Ways to&hellip;&rdquo; or &ldquo;6 Common Mistakes&hellip;&rdquo; format. These listicles drive traffic but don&rsquo;t build the deep topical authority that ranks for competitive keywords or gets cited by AI systems. The shift: one comprehensive pillar guide per persona segment (2,000+ words, structured with H2/H3 headers, specific data, and actionable steps), each supported by 8&ndash;10 shorter spoke posts. One pillar beats ten listicles for both rankings and AI citations.</p>
+        <ul class="pillar-list">
+          <li>&ldquo;The Complete Guide to Preforeclosure Investing&rdquo; &mdash; investor segment pillar</li>
+          <li>&ldquo;How to Find Absentee Owners: A Data-Driven Approach&rdquo; &mdash; investor/services pillar</li>
+          <li>&ldquo;The Real Estate Agent&rsquo;s Guide to Expired Listings&rdquo; &mdash; agent segment pillar</li>
+          <li>&ldquo;Mortgage Lead Generation from Public Records&rdquo; &mdash; mortgage segment pillar</li>
+          <li>Each pillar links to 8&ndash;10 related blog posts and the relevant /plays/ page</li>
+        </ul>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-header">
+          <div class="pillar-title">Replace video testimonials with written case studies</div>
+          <span class="badge badge-red">High impact</span>
+          <span class="badge badge-green">Low effort</span>
+        </div>
+        <p class="pillar-desc">Testimonials currently live inside Wistia video carousels &mdash; AI systems and search crawlers cannot read video content. The social proof exists; it just needs to be transcribed and formatted as text. Written case studies in the format &ldquo;How [persona] closed X deals / generated $Y using PropertyRadar in Z days&rdquo; are far more effective for GEO than video testimonials. Even 5 strong written case studies would dramatically improve AI citability and E-E-A-T signals.</p>
+        <ul class="pillar-list">
+          <li>Transcribe existing video testimonials into structured case study pages</li>
+          <li>Format: challenge &rarr; approach &rarr; PropertyRadar tools used &rarr; specific results</li>
+          <li>Add Person and Review schema to each case study</li>
+          <li>One case study per persona segment as a minimum starting point</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- — KEYWORDS — -->
+    <section class="section" id="keywords">
+      <div class="section-eyebrow">Section 04</div>
+      <div class="section-title">Keyword map</div>
+      <p class="section-desc">Priority keyword targets organized by commercial intent tier and target page.</p>
+
+      <div style="font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--faint); margin-bottom: 0.75rem;">Tier 1 &mdash; Core product keywords (highest commercial intent)</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Keyword</th><th>Intent</th><th>Volume</th><th>Difficulty</th><th>Target page</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>motivated seller leads</td>
+              <td>Commercial</td>
+              <td><span class="vol vol-h">High</span></td>
+              <td><div class="diff-wrap"><div class="diff-bar" style="width:80%;background:#dc2626;"></div></div></td>
+              <td>/features or homepage</td>
+            </tr>
+            <tr>
+              <td>real estate skip tracing software</td>
+              <td>Commercial</td>
+              <td><span class="vol vol-h">High</span></td>
+              <td><div class="diff-wrap"><div class="diff-bar" style="width:65%;background:#d97706;"></div></div></td>
+              <td>/features/real-estate-tools</td>
+            </tr>
+            <tr>
+              <td>property owner data</td>
+              <td>Commercial</td>
+              <td><span class="vol vol-h">High</span></td>
+              <td><div class="diff-wrap"><div class="diff-bar" style="width:70%;background:#d97706;"></div></div></td>
+              <td>/features/property-and-owner-data</td>
+            </tr>
+            <tr>
+              <td>foreclosure leads</td>
+              <td>Commercial</td>
+              <td><span class="vol vol-h">High</span></td>
+              <td><div class="diff-wrap"><div class="diff-bar" style="width:75%;background:#dc2626;"></div></div></td>
+              <td>/features/foreclosures</td>
+            </tr>
+            <tr>
+              <td>direct mail real estate investors</td>
+              <td>Commercial</td>
+              <td><span class="vol vol-m">Medium</span></td>
+              <td><div class="diff-wrap"><div class="diff-bar" style="width:55%;background:#d97706;"></div></div></td>
+              <td>/features/targeted-marketing</td>
+            </tr>
+            <tr>
+              <td>PropStream alternative</td>
+              <td>Commercial</td>
+              <td><span class="vol vol-m">Medium</span></td>
+              <td><div class="diff-wrap"><div class="diff-bar" style="width:40%;background:#059669;"></div></div></td>
+              <td>/vs/propstream (new page)</td>
+            </tr>
+            <tr>
+              <td>BatchLeads alternative</td>
+              <td>Commercial</td>
+              <td><span class="vol vol-m">Medium</span></td>
+              <td><div class="diff-wrap"><div class="diff-bar" style="width:35%;background:#059669;"></div></div></td>
+              <td>/vs/batchleads (new page)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--faint); margin-bottom: 0.75rem; margin-top: 1.5rem;">Tier 2 &mdash; Persona-specific keywords</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Keyword</th><th>Persona</th><th>Volume</th><th>Difficulty</th><th>Target page</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>how to find preforeclosures</td>
+              <td>Investors</td>
+              <td><span class="vol vol-h">High</span></td>
+              <td><div class="diff-wrap"><div class="diff-bar" style="width:45%;background:#059669;"></div></div></td>
+              <td>/plays/real-estate-investors/preforeclosures</td>
+            </tr>
+            <tr>
+              <td>probate real estate leads</td>
+              <td>Investors</td>
+              <td><span class="vol vol-h">High</span></td>
+              <td><div class="diff-wrap"><div class="diff-bar" style="width:50%;background:#d97706;"></div></div></td>
+              <td>/plays/real-estate-investors/probate</td>
+            </tr>
+            <tr>
+              <td>expired listing leads</td>
+              <td>Agents</td>
+              <td><span class="vol vol-h">High</span></td>
+              <td><div class="diff-wrap"><div class="diff-bar" style="width:60%;background:#d97706;"></div></div></td>
+              <td>/plays/residential-agents/expired-listings</td>
+            </tr>
+            <tr>
+              <td>cash-out refinance leads</td>
+              <td>Mortgage</td>
+              <td><span class="vol vol-m">Medium</span></td>
+              <td><div class="diff-wrap"><div class="diff-bar" style="width:40%;background:#059669;"></div></div></td>
+              <td>/plays/mortgage-pros/cashout-refinance</td>
+            </tr>
+            <tr>
+              <td>absentee owner list</td>
+              <td>Investors</td>
+              <td><span class="vol vol-h">High</span></td>
+              <td><div class="diff-wrap"><div class="diff-bar" style="width:55%;background:#d97706;"></div></div></td>
+              <td>/plays/service-pros/out-of-area-owners</td>
+            </tr>
+            <tr>
+              <td>likely to sell homeowners list</td>
+              <td>Agents</td>
+              <td><span class="vol vol-m">Medium</span></td>
+              <td><div class="diff-wrap"><div class="diff-bar" style="width:35%;background:#059669;"></div></div></td>
+              <td>/plays/residential-agents/likely-sellers</td>
+            </tr>
+            <tr>
+              <td>roofing leads from homeowners</td>
+              <td>Services</td>
+              <td><span class="vol vol-m">Medium</span></td>
+              <td><div class="diff-wrap"><div class="diff-bar" style="width:30%;background:#059669;"></div></div></td>
+              <td>/plays/service-pros/ (expand)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--faint); margin-bottom: 0.75rem; margin-top: 1.5rem;">Tier 3 &mdash; GEO long-tail (build programmatically)</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>URL pattern</th><th>Example</th><th>Volume per page</th><th>Pages to build</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>/data/[state]/motivated-sellers</td>
+              <td>motivated sellers Los Angeles</td>
+              <td><span class="vol vol-l">Low&ndash;Med</span></td>
+              <td>50 states</td>
+            </tr>
+            <tr>
+              <td>/data/[state]/foreclosure-tracking</td>
+              <td>foreclosure data Texas</td>
+              <td><span class="vol vol-m">Medium</span></td>
+              <td>50 states</td>
+            </tr>
+            <tr>
+              <td>/data/[state]/probate-leads</td>
+              <td>probate leads Florida</td>
+              <td><span class="vol vol-m">Medium</span></td>
+              <td>50 states</td>
+            </tr>
+            <tr>
+              <td>/data/[city]/real-estate-investors</td>
+              <td>real estate investor tools Phoenix</td>
+              <td><span class="vol vol-l">Low</span></td>
+              <td>Top 100 cities</td>
+            </tr>
+            <tr>
+              <td>/data/[state]/[industry]-skip-tracing</td>
+              <td>skip tracing real estate California</td>
+              <td><span class="vol vol-l">Low</span></td>
+              <td>State &times; industry matrix</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- — GEO — -->
+    <section class="section" id="geo">
+      <div class="section-eyebrow">Section 05</div>
+      <div class="section-title">GEO strategy</div>
+      <p class="section-desc">Generative Engine Optimization &mdash; getting cited by AI systems (ChatGPT, Perplexity, Google AI Overviews, Gemini) when people ask questions in PropertyRadar&rsquo;s domain.</p>
+
+      <div class="geo-card">
+        <div class="geo-card-title">What GEO means in 2026</div>
+        <div class="geo-card-body">GEO is distinct from classic SEO. You&rsquo;re not trying to rank #1 in blue links &mdash; you&rsquo;re trying to be the source an AI quotes when someone asks &ldquo;what&rsquo;s the best tool for finding motivated sellers?&rdquo; or &ldquo;how do I find preforeclosure leads?&rdquo; The signals AI systems prefer: stats-rich content, first-party data, structured markup, frequent updates, and clear authorship.</div>
+      </div>
+
+      <div class="geo-card">
+        <div class="geo-card-title">GEO strategy 1 &mdash; State &times; use-case geo page matrix</div>
+        <div class="geo-card-body">Real estate is a local business. &ldquo;Foreclosure data&rdquo; is too broad. &ldquo;Foreclosure data in Arizona&rdquo; is what a Phoenix investor searches. Build programmatic geo pages with real PropertyRadar data: top counties, average days-on-market, foreclosure filing rates, trustee sale schedules. These pages create 250 highly-specific, low-competition ranking targets that also serve as AI citation sources for local queries.</div>
+        <div class="code-block">URL structure:
+/data/[state]/[use-case]
+
+Examples:
+/data/california/foreclosure-tracking
+/data/texas/motivated-sellers
+/data/florida/probate-leads
+/data/arizona/skip-tracing
+/data/new-york/expired-listings</div>
+        <div class="tag-row">
+          <span class="tag-pill">50 states</span>
+          <span class="tag-pill">5 use cases</span>
+          <span class="tag-pill">= 250 pages</span>
+          <span class="tag-pill">HubDB table-driven</span>
+          <span class="tag-pill">programmatic CMS</span>
+        </div>
+      </div>
+
+      <div class="geo-card">
+        <div class="geo-card-title">GEO strategy 2 &mdash; Become the definitive data source</div>
+        <div class="geo-card-body">AI systems prefer to cite content that is: stats-rich, frequently updated, uses first-person data (&ldquo;our analysis of 160M properties shows&hellip;&rdquo;), and has structured data confirming authorship. PropertyRadar has unique, proprietary data that competitors don&rsquo;t have. Publishing original research that AI systems can quote repeatedly is the highest-leverage GEO play available.</div>
+        <ul class="pillar-list" style="margin-top: 10px;">
+          <li style="color: var(--muted);">Quarterly &ldquo;Foreclosure Trends by State&rdquo; report &mdash; PropertyRadar has this data natively</li>
+          <li style="color: var(--muted);">Monthly &ldquo;Motivated Seller Market Index&rdquo; &mdash; a branded number AI systems can quote</li>
+          <li style="color: var(--muted);">Annual &ldquo;State of Real Estate Lead Generation&rdquo; research report</li>
+          <li style="color: var(--muted);">City-level &ldquo;Best Markets for Fix &amp; Flip&rdquo; rankings powered by PropertyRadar data</li>
+        </ul>
+      </div>
+
+      <div class="geo-card">
+        <div class="geo-card-title">GEO strategy 3 &mdash; Own the definitions of terms you invented</div>
+        <div class="geo-card-body">PropertyRadar owns several terms that competitors don&rsquo;t &mdash; OwnerGraph&trade;, &ldquo;Hyperlocal Lead Generation,&rdquo; &ldquo;Good Neighbor Marketing,&rdquo; &ldquo;Distress Scoring.&rdquo; But none have dedicated definition pages. AI systems need a page to cite as the canonical source. Right now, if someone asks &ldquo;what is OwnerGraph,&rdquo; there&rsquo;s nothing authoritative to pull. Build tight, definitional pages for each proprietary concept &mdash; 2&ndash;3 clear sentences that an AI could lift and attribute directly to PropertyRadar.</div>
+        <div class="code-block">Schema to add to /features/ownergraph:
+{
+  "@type": "DefinedTerm",
+  "name": "OwnerGraph&trade;",
+  "description": "PropertyRadar's proprietary technology that ties public records together across sources and over time to discover owner insights that flat data never will.",
+  "inDefinedTermSet": "PropertyRadar Platform",
+  "creator": { "@type": "Organization", "name": "PropertyRadar" },
+  "dateCreated": "2007"
+}</div>
+        <div class="tag-row">
+          <span class="tag-pill">OwnerGraph&trade;</span>
+          <span class="tag-pill">Hyperlocal Lead Generation</span>
+          <span class="tag-pill">Good Neighbor Marketing</span>
+          <span class="tag-pill">Distress Scoring</span>
+        </div>
+      </div>
+
+      <div class="geo-card">
+        <div class="geo-card-title">GEO strategy 4 &mdash; Convert video testimonials to written case studies</div>
+        <div class="geo-card-body">AI systems cannot read video content. PropertyRadar&rsquo;s testimonials are locked inside Wistia embeds and carousels &mdash; completely invisible to AI crawlers. The social proof already exists; it just needs to be in text. Written case studies in the format &ldquo;How [investor type] generated $X / closed Y deals using PropertyRadar in Z days&rdquo; are among the most citable content formats for AI systems. They&rsquo;re specific, results-oriented, and attributable. Five strong written case studies would do more for GEO than fifty video testimonials.</div>
+        <ul class="pillar-list" style="margin-top: 10px;">
+          <li style="color: var(--muted);">Transcribe Wistia testimonials into structured /case-studies/ pages</li>
+          <li style="color: var(--muted);">Format: persona &rarr; challenge &rarr; tools used &rarr; specific measurable results</li>
+          <li style="color: var(--muted);">Add Person schema (subject) + Review schema to each page</li>
+          <li style="color: var(--muted);">One per persona segment minimum: investors, agents, mortgage, home services</li>
+        </ul>
+      </div>
+
+      <div class="geo-card">
+        <div class="geo-card-title">GEO strategy 5 &mdash; Publish /llms.txt for AI crawler hygiene</div>
+        <div class="geo-card-body">An emerging standard: /llms.txt tells LLM crawlers exactly what to read about your site, in plain language. PropertyRadar&rsquo;s Website Content Crawler natively supports this format. Publishing a well-structured llms.txt with key brand facts, product descriptions, and priority page links allows AI crawlers to build accurate, brand-favorable knowledge about PropertyRadar&rsquo;s product.</div>
+        <div class="code-block"># PropertyRadar
+> PropertyRadar connects real estate professionals with motivated property owners using superior data, OwnerGraph&trade; technology, and marketing automation.
+
+## Key facts
+- Founded: 2007 (began with foreclosure tracking)
+- Properties tracked: 160M+
+- Phones &amp; emails: 1B+
+- Completed customer transactions: $250B+
+- Proprietary technology: OwnerGraph&trade;
+
+## Core product pages
+/features/property-and-owner-data
+/features/foreclosures
+/features/targeted-marketing
+/features/real-estate-tools
+/plays (lead generation playbooks by persona)</div>
+      </div>
+    </section>
+
+    <!-- — AEO — -->
+    <section class="section" id="aeo">
+      <div class="section-eyebrow">Section 06</div>
+      <div class="section-title">AEO strategy</div>
+      <p class="section-desc">Answer Engine Optimization &mdash; owning position zero in Google featured snippets, AI Overviews, and voice assistant responses.</p>
+
+      <div class="pillar">
+        <div class="pillar-header">
+          <div class="pillar-title">SoftwareApplication schema &mdash; homepage and pricing page</div>
+          <span class="badge badge-red">Highest priority</span>
+        </div>
+        <p class="pillar-desc">Enables rich results showing PropertyRadar&rsquo;s category, pricing, and ratings directly in search results &mdash; before the user even clicks. The most valuable schema type for a SaaS product.</p>
+        <div class="schema-block"><span class="sp">{</span>
+  <span class="sk">"@context"</span>: <span class="sv">"https://schema.org"</span>,
+  <span class="sk">"@type"</span>: <span class="sv">"SoftwareApplication"</span>,
+  <span class="sk">"name"</span>: <span class="sv">"PropertyRadar"</span>,
+  <span class="sk">"applicationCategory"</span>: <span class="sv">"BusinessApplication"</span>,
+  <span class="sk">"operatingSystem"</span>: <span class="sv">"Web, iOS, Android"</span>,
+  <span class="sk">"description"</span>: <span class="sv">"Find motivated property owners and automate outreach..."</span>,
+  <span class="sk">"offers"</span>: <span class="sp">{</span> <span class="sk">"@type"</span>: <span class="sv">"Offer"</span>, <span class="sk">"price"</span>: <span class="sv">"..."</span> <span class="sp">}</span>,
+  <span class="sk">"aggregateRating"</span>: <span class="sp">{</span>
+    <span class="sk">"@type"</span>: <span class="sv">"AggregateRating"</span>,
+    <span class="sk">"ratingValue"</span>: <span class="sv">"4.8"</span>,
+    <span class="sk">"reviewCount"</span>: <span class="sv">"500"</span>
+  <span class="sp">}</span>
+<span class="sp">}</span></div>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-header">
+          <div class="pillar-title">FAQPage schema &mdash; every /plays/ page</div>
+          <span class="badge badge-red">High priority</span>
+        </div>
+        <p class="pillar-desc">Each play page already has natural FAQ content (Why this works, What is X, Who should use this, How to measure success). Adding FAQPage schema makes these eligible for accordion-style featured snippets in Google &mdash; often appearing above paid ads for informational queries. 30+ pages can be updated in a single HubSpot template change.</p>
+        <div class="schema-block"><span class="sp">{</span>
+  <span class="sk">"@type"</span>: <span class="sv">"FAQPage"</span>,
+  <span class="sk">"mainEntity"</span>: <span class="sp">[{</span>
+    <span class="sk">"@type"</span>: <span class="sv">"Question"</span>,
+    <span class="sk">"name"</span>: <span class="sv">"What is a cash-out refinance lead?"</span>,
+    <span class="sk">"acceptedAnswer"</span>: <span class="sp">{</span>
+      <span class="sk">"@type"</span>: <span class="sv">"Answer"</span>,
+      <span class="sk">"text"</span>: <span class="sv">"A homeowner with &ge;50% equity who may want to convert that equity to cash for renovations, debt consolidation, or investments..."</span>
+    <span class="sp">}</span>
+  <span class="sp">}]</span>
+<span class="sp">}</span></div>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-header">
+          <div class="pillar-title">HowTo schema &mdash; step-by-step play execution guides</div>
+          <span class="badge badge-amber">Medium priority</span>
+        </div>
+        <p class="pillar-desc">HowTo schema turns procedural content into rich step-by-step results in Google. The /plays/ pages already describe how to run each play &mdash; adding HowTo schema makes them AEO-ready for &ldquo;how to find preforeclosures&rdquo; type queries that account for significant search volume.</p>
+        <div class="schema-block"><span class="sp">{</span>
+  <span class="sk">"@type"</span>: <span class="sv">"HowTo"</span>,
+  <span class="sk">"name"</span>: <span class="sv">"How to find preforeclosure leads"</span>,
+  <span class="sk">"tool"</span>: <span class="sp">{</span> <span class="sk">"@type"</span>: <span class="sv">"HowToTool"</span>, <span class="sk">"name"</span>: <span class="sv">"PropertyRadar"</span> <span class="sp">}</span>,
+  <span class="sk">"step"</span>: <span class="sp">[</span>
+    <span class="sp">{</span> <span class="sk">"@type"</span>: <span class="sv">"HowToStep"</span>, <span class="sk">"text"</span>: <span class="sv">"Search for NODs in your target county using PropertyRadar's foreclosure filters..."</span> <span class="sp">}</span>,
+    <span class="sp">{</span> <span class="sk">"@type"</span>: <span class="sv">"HowToStep"</span>, <span class="sk">"text"</span>: <span class="sv">"Filter by equity percentage to prioritize homeowners with equity to negotiate..."</span> <span class="sp">}</span>,
+    <span class="sp">{</span> <span class="sk">"@type"</span>: <span class="sv">"HowToStep"</span>, <span class="sk">"text"</span>: <span class="sv">"Launch a multi-channel outreach campaign via direct mail, phone, and email..."</span> <span class="sp">}</span>
+  <span class="sp">]</span>
+<span class="sp">}</span></div>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-header">
+          <div class="pillar-title">Dataset schema &mdash; for PropertyRadar market data and reports</div>
+          <span class="badge badge-blue">GEO + AEO</span>
+        </div>
+        <p class="pillar-desc">When publishing &ldquo;State of Foreclosures&rdquo; reports or market data pages, Dataset schema signals to AI systems that PropertyRadar is a primary data source &mdash; not a secondary aggregator. This is critical for GEO citations and positions PropertyRadar as the authoritative source on real estate lead data.</p>
+        <div class="schema-block"><span class="sp">{</span>
+  <span class="sk">"@type"</span>: <span class="sv">"Dataset"</span>,
+  <span class="sk">"name"</span>: <span class="sv">"US Foreclosure Activity Report Q1 2026"</span>,
+  <span class="sk">"creator"</span>: <span class="sp">{</span> <span class="sk">"@type"</span>: <span class="sv">"Organization"</span>, <span class="sk">"name"</span>: <span class="sv">"PropertyRadar"</span> <span class="sp">}</span>,
+  <span class="sk">"temporalCoverage"</span>: <span class="sv">"2026-01/2026-03"</span>,
+  <span class="sk">"spatialCoverage"</span>: <span class="sv">"United States"</span>,
+  <span class="sk">"description"</span>: <span class="sv">"Quarterly analysis of foreclosure filings, NODs, and trustee sales across all 50 states."</span>
+<span class="sp">}</span></div>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-header">
+          <div class="pillar-title">Inverted pyramid writing &mdash; answer directly in the first 40 words</div>
+          <span class="badge badge-amber">Content pattern</span>
+        </div>
+        <p class="pillar-desc">AI systems and Google pull the first 40&ndash;60 words of a paragraph as a featured snippet. Every /plays/ page and blog post should open with a direct, complete answer to the core question &mdash; then elaborate. Current pages tend to build up context before stating the answer, which prevents snippet capture.</p>
+        <ul class="pillar-list">
+          <li>Preforeclosure page should open: &ldquo;Preforeclosure leads are homeowners who have received a Notice of Default but haven&rsquo;t yet lost their home &mdash; typically the highest-equity, most motivated sellers in any market.&rdquo;</li>
+          <li>Probate page should open: &ldquo;Probate leads are properties in an estate being settled after a death, where heirs often need to sell quickly &mdash; creating a motivated seller with reduced price pressure from competitors.&rdquo;</li>
+          <li>Every play page needs this pattern: direct definition &rarr; why it matters &rarr; how PropertyRadar helps</li>
+        </ul>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-header">
+          <div class="pillar-title">Build a standalone FAQ hub &mdash; the content AI systems depend on most</div>
+          <span class="badge badge-red">High priority</span>
+          <span class="badge badge-green">Low effort</span>
+        </div>
+        <p class="pillar-desc">There is no FAQ section on the site. AI answer engines specifically pull from question-and-answer formatted content when generating responses. A dedicated /faq page targeting the exact questions prospects ask &mdash; structured with FAQPage schema &mdash; directly feeds both AI citations and Google featured snippets. These questions already exist in support tickets, sales calls, and comparison searches. They just need a structured home on the site.</p>
+        <ul class="pillar-list">
+          <li>&ldquo;How does PropertyRadar compare to PropStream?&rdquo; &mdash; the highest-value FAQ question on the site</li>
+          <li>&ldquo;What data does PropertyRadar have?&rdquo; &mdash; answers a core pre-purchase question</li>
+          <li>&ldquo;How do I find preforeclosure leads?&rdquo; &mdash; captures a top informational search query</li>
+          <li>&ldquo;What is OwnerGraph&trade;?&rdquo; &mdash; establishes the proprietary term for AI systems</li>
+          <li>&ldquo;What&rsquo;s included in PropertyRadar&rsquo;s free trial?&rdquo; &mdash; conversion-critical FAQ</li>
+          <li>Group FAQs by persona: investor FAQs, agent FAQs, mortgage FAQs, home services FAQs</li>
+        </ul>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-header">
+          <div class="pillar-title">Add author schema and bylines to all 660+ blog posts</div>
+          <span class="badge badge-amber">Medium priority</span>
+          <span class="badge badge-green">Low effort</span>
+        </div>
+        <p class="pillar-desc">Every blog post crawled returned <code>author: null</code>. Google and AI systems both use authorship to assess content credibility and E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness). Adding author bylines with Person schema &mdash; including name, job title, and a short bio linking to an author page &mdash; to every blog post is a template-level change in HubSpot that immediately improves trust signals across hundreds of existing posts.</p>
+        <div class="schema-block"><span class="sp">{</span>
+  <span class="sk">"@type"</span>: <span class="sv">"BlogPosting"</span>,
+  <span class="sk">"author"</span>: <span class="sp">{</span>
+    <span class="sk">"@type"</span>: <span class="sv">"Person"</span>,
+    <span class="sk">"name"</span>: <span class="sv">"[Author Name]"</span>,
+    <span class="sk">"jobTitle"</span>: <span class="sv">"Real Estate Data Strategist"</span>,
+    <span class="sk">"url"</span>: <span class="sv">"https://www.propertyradar.com/blog/author/[slug]"</span>
+  <span class="sp">}</span>,
+  <span class="sk">"publisher"</span>: <span class="sp">{</span>
+    <span class="sk">"@type"</span>: <span class="sv">"Organization"</span>,
+    <span class="sk">"name"</span>: <span class="sv">"PropertyRadar"</span>
+  <span class="sp">}</span>
+<span class="sp">}</span></div>
+      </div>
+    </section>
+
+    <!-- — ROADMAP — -->
+    <section class="section" id="roadmap">
+      <div class="section-eyebrow">Section 07</div>
+      <div class="section-title">90-day roadmap</div>
+      <p class="section-desc">Prioritized execution plan organized by phase. Technical fixes first, content expansion second, scale third.</p>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-num ph1">1</div>
+          <div class="phase-title">Foundation &mdash; fix what&rsquo;s broken</div>
+          <div class="phase-period">Days 1&ndash;30</div>
+        </div>
+        <div class="phase-body">
+          <div class="task">
+            <span class="task-tag tt-tech">Tech</span>
+            <div>
+              <div class="task-text">Fix homepage cache-control: 5s &rarr; 3,600s edge cache</div>
+              <div class="task-impact">One-line Cloudflare cache rule &middot; eliminates TTFB issues on the most important page &middot; immediate Core Web Vitals improvement</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="task-tag tt-aeo">AEO</span>
+            <div>
+              <div class="task-text">Add Organization + SoftwareApplication JSON-LD to homepage</div>
+              <div class="task-impact">Unlocks rich results &middot; signals to AI systems that PropertyRadar is a primary entity &middot; estimated 2&ndash;4 hours of dev work</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="task-tag tt-aeo">AEO</span>
+            <div>
+              <div class="task-text">Add BreadcrumbList schema to all /plays/ and /built-for/ pages</div>
+              <div class="task-impact">Template-level change in HubSpot CMS &mdash; affects all 40+ pages automatically &middot; signals content hierarchy to all crawlers</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="task-tag tt-seo">SEO</span>
+            <div>
+              <div class="task-text">Rebuild site navigation with Solutions + Features + Resources dropdowns</div>
+              <div class="task-impact">Passes PageRank to all content pages &middot; reduces orphaned page risk &middot; essential for content crawlability</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="task-tag tt-geo">GEO</span>
+            <div>
+              <div class="task-text">Publish /llms.txt with key brand facts and priority page list</div>
+              <div class="task-impact">Signals to AI crawlers what&rsquo;s important &middot; emerging standard with first-mover advantage still available</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="task-tag tt-seo">SEO</span>
+            <div>
+              <div class="task-text">Audit and rewrite all /plays/ page titles and meta descriptions for target keywords</div>
+              <div class="task-impact">Low effort &middot; high impact &middot; current titles are branded but not keyword-optimized (e.g. &ldquo;Cash-Out Refinance | Mortgage Pros Play&rdquo; should target &ldquo;cash-out refinance leads&rdquo;)</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="task-tag tt-aeo">AEO</span>
+            <div>
+              <div class="task-text">Add FAQPage schema to top 10 /plays/ pages via HubSpot template</div>
+              <div class="task-impact">Targets featured snippet positions for informational queries &middot; 30+ pages can be updated via a single template module &middot; 5.0 blog post proves the CMS supports this already</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="task-tag tt-aeo">AEO</span>
+            <div>
+              <div class="task-text">Build standalone /faq page targeting top prospect questions with FAQPage schema</div>
+              <div class="task-impact">The highest-leverage AEO gap on the site &middot; directly feeds AI citations for &ldquo;how does PropertyRadar work&rdquo; and comparison queries &middot; questions already exist in sales/support &mdash; just need a structured page</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="task-tag tt-aeo">AEO</span>
+            <div>
+              <div class="task-text">Add author bylines + Person schema to blog post template</div>
+              <div class="task-impact">Template-level change &middot; immediately adds authorship signals to all 660+ existing blog posts &middot; zero per-post editing required &middot; critical E-E-A-T signal for Google and AI systems</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-num ph2">2</div>
+          <div class="phase-title">Content expansion &mdash; depth and differentiation</div>
+          <div class="phase-period">Days 31&ndash;60</div>
+        </div>
+        <div class="phase-body">
+          <div class="task">
+            <span class="task-tag tt-seo">SEO</span>
+            <div>
+              <div class="task-text">Expand top 10 /plays/ pages from ~400 words to 1,500+ words</div>
+              <div class="task-impact">Priority order: preforeclosures, probate, expired listings, cash-out refinance, likely sellers &mdash; these have the highest search volume and existing page structure to expand</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="task-tag tt-aeo">AEO</span>
+            <div>
+              <div class="task-text">Add HowTo schema to all expanded /plays/ pages</div>
+              <div class="task-impact">Targets &ldquo;how to find [play type] leads&rdquo; queries for rich step-by-step results and AI Overview citation</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="task-tag tt-seo">SEO</span>
+            <div>
+              <div class="task-text">Build 5 competitor /vs/ comparison pages</div>
+              <div class="task-impact">PropStream, BatchLeads, BatchSkipTracing, Landvoice, REIPro &mdash; captures high-intent bottom-of-funnel traffic from users who are ready to buy</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="task-tag tt-geo">GEO</span>
+            <div>
+              <div class="task-text">Launch 50 state-level geo pages: /data/[state]/foreclosure-tracking</div>
+              <div class="task-impact">Programmatic HubDB build using PropertyRadar&rsquo;s own state-level data &middot; one template, 50 pages &middot; creates 50 AI-citable, locally-specific data sources</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="task-tag tt-geo">GEO</span>
+            <div>
+              <div class="task-text">Publish first &ldquo;Quarterly Foreclosure Trends&rdquo; data report with Dataset schema</div>
+              <div class="task-impact">Positions PropertyRadar as a primary data source &middot; enables AI citation &middot; earns press backlinks &middot; builds domain authority</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="task-tag tt-seo">SEO</span>
+            <div>
+              <div class="task-text">Write 5 pillar guides (one per persona, 2,000+ words each)</div>
+              <div class="task-impact">Replaces listicle format with content AI systems actually cite &middot; &ldquo;Complete Guide to Preforeclosure Investing&rdquo; outranks &ldquo;5 Preforeclosure Tips&rdquo; every time &middot; start with investor segment (largest audience)</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="task-tag tt-geo">GEO</span>
+            <div>
+              <div class="task-text">Convert Wistia video testimonials to written case studies on /case-studies/ pages</div>
+              <div class="task-impact">Video is invisible to AI crawlers &middot; written case studies are among the most citable formats for AI systems &middot; transcription + formatting is low effort, impact is high &middot; add Person + Review schema</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="task-tag tt-aeo">AEO</span>
+            <div>
+              <div class="task-text">Rewrite all play page opening paragraphs using inverted pyramid structure</div>
+              <div class="task-impact">Direct 40-word answer in the first paragraph of each page &middot; targets Google AI Overviews and featured snippets for definition queries</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-num ph3">3</div>
+          <div class="phase-title">Scale and authority &mdash; programmatic + original data</div>
+          <div class="phase-period">Days 61&ndash;90</div>
+        </div>
+        <div class="phase-body">
+          <div class="task">
+            <span class="task-tag tt-geo">GEO</span>
+            <div>
+              <div class="task-text">Expand geo pages to 250: full state &times; use-case matrix</div>
+              <div class="task-impact">Add motivated-sellers, probate-leads, and skip-tracing page types across all 50 states &middot; same HubDB template, new rows</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="task-tag tt-aeo">AEO</span>
+            <div>
+              <div class="task-text">Add Dataset + DefinedTerm schema for OwnerGraph&trade; and all PropertyRadar proprietary terms</div>
+              <div class="task-impact">Trains AI systems to associate proprietary terminology exclusively with PropertyRadar &middot; creates uncopyable brand equity in AI responses</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="task-tag tt-seo">SEO</span>
+            <div>
+              <div class="task-text">Build city-level pages for top 50 MSAs</div>
+              <div class="task-impact">&ldquo;Motivated sellers [city]&rdquo;, &ldquo;foreclosure leads [city]&rdquo; &mdash; long-tail local queries with low competition and strong commercial intent</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="task-tag tt-geo">GEO</span>
+            <div>
+              <div class="task-text">Launch &ldquo;Motivated Seller Market Index&rdquo; &mdash; a monthly proprietary statistic</div>
+              <div class="task-impact">A branded, citable number &middot; press-worthy monthly release &middot; AI systems can reference &ldquo;according to PropertyRadar&rsquo;s Motivated Seller Market Index&hellip;&rdquo;</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="task-tag tt-seo">SEO</span>
+            <div>
+              <div class="task-text">Shift blog publishing cadence: 1 pillar guide + 4 spoke posts per month per persona</div>
+              <div class="task-impact">Moves away from pure listicle output toward a hub-and-spoke model &middot; each pillar becomes a long-term ranking and citation asset &middot; spoke posts feed the pillar&rsquo;s internal link authority</div>
+            </div>
+          </div>
+          <div class="task">
+            <span class="task-tag tt-seo">SEO</span>
+            <div>
+              <div class="task-text">Build out remaining /plays/ pages &mdash; all 30+ to 1,500+ words</div>
+              <div class="task-impact">Complete content depth across the full play library &middot; every play page becomes a legitimate ranking asset for its target query</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OUTCOMES -->
+      <div style="font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--faint); margin-bottom: 0.75rem; margin-top: 2rem;">90-day targets &mdash; based on SEMrush baseline</div>
+      <div class="table-wrap" style="margin-bottom: 1.5rem;">
+        <table>
+          <thead><tr><th>Metric</th><th>Current</th><th>90-day target</th><th>How</th></tr></thead>
+          <tbody>
+            <tr><td>Organic traffic</td><td>16.1K/mo</td><td><strong>30K+/mo</strong></td><td>Position improvements + 250 new geo pages</td></tr>
+            <tr><td>Average position</td><td>10.3</td><td><strong>7.0</strong></td><td>Content depth on /plays/ + schema markup</td></tr>
+            <tr><td>CTR</td><td>1.3%</td><td><strong>3.0%+</strong></td><td>Rich results + title rewrites + FAQ snippets</td></tr>
+            <tr><td>AI Visibility Score</td><td>32</td><td><strong>60+</strong></td><td>Structured data + llms.txt + case studies</td></tr>
+            <tr><td>AI citations</td><td>252 pages</td><td><strong>500+ pages</strong></td><td>GEO pages + FAQ hub + definition pages</td></tr>
+            <tr><td>Indexed pages</td><td>1,279</td><td><strong>1,600+</strong></td><td>250 geo pages + 5 pillar guides + /vs/ pages</td></tr>
+            <tr><td>Non-brand organic clicks</td><td>~5.1K/mo</td><td><strong>15K+/mo</strong></td><td>Keyword targeting on commercial intent terms</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="outcome-strip">
+        <div>
+          <div class="outcome-val">30K+</div>
+          <div class="outcome-label">Monthly organic (from 16.1K)</div>
+        </div>
+        <div>
+          <div class="outcome-val">3%+</div>
+          <div class="outcome-label">CTR (from 1.3%)</div>
+        </div>
+        <div>
+          <div class="outcome-val">60+</div>
+          <div class="outcome-label">AI visibility (from 32)</div>
+        </div>
+        <div>
+          <div class="outcome-val">250+</div>
+          <div class="outcome-label">Geo pages live (from 0)</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p>Built from SEMrush data + live crawl of <strong>propertyradar.com</strong> &middot; 1,279 pages audited &middot; April 2026</p>
+  <p style="margin-top: 6px;">Strategy covers SEO &middot; GEO (Generative Engine Optimization) &middot; AEO (Answer Engine Optimization)</p>
+  <p style="margin-top: 4px;">Data sources: SEMrush &middot; Google Search Console &middot; Google Analytics (GA4) &middot; Live site crawl</p>
+</footer>
+
+</div><!-- end #pw-content -->
+
+<script>
+// — PASSWORD CONFIG ——————————————————
+const CORRECT_PASSWORD = 'radar2026';
+// ————————————————————————————————————
+
+const SESSION_KEY = 'pr_strategy_auth';
+
+function checkPw() {
+  const input = document.getElementById('pw-input');
+  const error = document.getElementById('pw-error');
+  const val = input.value.trim();
+
+  if (val === CORRECT_PASSWORD) {
+    sessionStorage.setItem(SESSION_KEY, '1');
+    document.getElementById('pw-gate').classList.add('hidden');
+    document.getElementById('pw-content').classList.add('visible');
+    error.textContent = '';
+  } else {
+    input.classList.add('error');
+    error.textContent = 'Incorrect password. Please try again.';
+    input.value = '';
+    setTimeout(() => input.classList.remove('error'), 400);
+    input.focus();
+  }
+}
+
+function togglePwVis() {
+  const input = document.getElementById('pw-input');
+  const btn = document.getElementById('pw-vis-btn');
+  const isHidden = input.style.webkitTextSecurity !== 'none';
+  input.style.webkitTextSecurity = isHidden ? 'none' : 'disc';
+  input.style.textSecurity = isHidden ? 'none' : 'disc';
+  btn.textContent = isHidden ? '\u{1F441}' : '\u{1F441}';
+}
+
+// Auto-unlock if already authenticated this session
+if (sessionStorage.getItem(SESSION_KEY) === '1') {
+  document.getElementById('pw-gate').classList.add('hidden');
+  document.getElementById('pw-content').classList.add('visible');
+}
+
+document.getElementById('pw-input').focus();
+
+const HEADER_H = 68;
+const sections = document.querySelectorAll('.section[id]');
+const navLinks = document.querySelectorAll('.side-nav a');
+
+// Click: smooth scroll with header offset
+navLinks.forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href').replace('#', '');
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    const top = target.getBoundingClientRect().top + window.scrollY - HEADER_H;
+    window.scrollTo({ top, behavior: 'smooth' });
+    // Update active immediately on click
+    navLinks.forEach(a => a.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// Scroll: highlight active section based on scroll position
+function updateActive() {
+  let current = null;
+  sections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top <= HEADER_H + 40) {
+      current = section.id;
+    }
+  });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) {
+      a.classList.add('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', updateActive, { passive: true });
+updateActive();
+</script>
+</body>
+</html>
