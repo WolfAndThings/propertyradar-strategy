@@ -719,10 +719,10 @@
         <table>
           <thead><tr><th>Page</th><th>Pageviews</th><th>Engagement rate</th><th>Assessment</th></tr></thead>
           <tbody>
-            <tr><td>/lp/divorce-leads</td><td><strong>39,333</strong></td><td><span style="color:var(--red);font-weight:500;">7.56%</span></td><td>Highest traffic, terrible engagement &mdash; paid traffic bouncing</td></tr>
+            <tr><td>/lp/divorce-leads</td><td><strong>39,333</strong></td><td><span style="color:var(--red);font-weight:500;">7.56%</span></td><td>Highest traffic page on the site, low engagement</td></tr>
             <tr><td>/</td><td><strong>32,233</strong></td><td><span style="color:var(--green);font-weight:500;">69.72%</span></td><td>Homepage performing well</td></tr>
             <tr><td>/login</td><td><strong>26,746</strong></td><td><span style="color:var(--green);font-weight:500;">91.7%</span></td><td>Existing users &mdash; healthy retention signal</td></tr>
-            <tr><td>/lp/eviction-leads</td><td><strong>21,749</strong></td><td><span style="color:var(--red);font-weight:500;">11.63%</span></td><td>Paid LP &mdash; low engagement, high bounce</td></tr>
+            <tr><td>/lp/eviction-leads</td><td><strong>21,749</strong></td><td><span style="color:var(--red);font-weight:500;">11.63%</span></td><td>High traffic, low engagement</td></tr>
             <tr><td>/register</td><td><strong>8,529</strong></td><td><span style="color:var(--green);font-weight:500;">83.96%</span></td><td>Strong conversion page</td></tr>
           </tbody>
         </table>
@@ -731,62 +731,8 @@
       <div class="finding">
         <div class="finding-icon fi-r">!</div>
         <div class="finding-body">
-          <div class="finding-title">Organic rankings slid throughout March &mdash; and ad spend is masking the decay</div>
-          <div class="finding-desc">Average position worsened by 5.58 positions to 10.3 (page 2). Visibility dropped 12.59% in a single week. Impressions declined 5.07%. &ldquo;Commercial real estate database&rdquo; fell 23 positions. Meanwhile, paid landing pages are absorbing ~75K pageviews/month (/lp/divorce-leads: 39K, /lp/eviction-leads: 21K, Facebook LP: 7.3K, Google Ads LP: 7.3K) &mdash; spending heavily to compensate for an organic foundation that&rsquo;s actively eroding. The ad budget is papering over a structural problem: without the strategy below, every month requires more ad spend to maintain the same traffic levels.</div>
-        </div>
-      </div>
-
-      <div class="finding" style="margin-top: 8px;">
-        <div class="finding-icon fi-r">!</div>
-        <div class="finding-body">
-          <div class="finding-title">~75K paid pageviews/month with single-digit engagement &mdash; ad spend is leaking</div>
-          <div class="finding-desc">The highest-traffic pages on the entire site are paid landing pages, and the engagement numbers are alarming:
-            <br><br>
-            <strong>/lp/divorce-leads</strong> &mdash; 39,333 views, <strong>7.56% engagement</strong><br>
-            <strong>/lp/eviction-leads</strong> &mdash; 21,749 views, <strong>11.63% engagement</strong><br>
-            <strong>/lp/investors (Facebook)</strong> &mdash; 7,310 views, <strong>4.33% engagement</strong><br>
-            <strong>/lp/eviction-leads (Google Ads)</strong> &mdash; 7,314 views, <strong>45.06% engagement</strong><br>
-            <br>
-            Compare this to the homepage at <strong>69.72%</strong> and /register at <strong>83.96%</strong>. The product converts when the right people arrive through the right channels. But 3 of 4 paid LPs are losing 88&ndash;96% of visitors on arrival. Organic content that ranks for the same queries would deliver engaged visitors at zero marginal cost &mdash; and the SEO/GEO strategy below builds exactly that.</div>
-        </div>
-      </div>
-
-      <div class="finding" style="margin-top: 8px;">
-        <div class="finding-icon fi-r">!</div>
-        <div class="finding-body">
-          <div class="finding-title">Paid ad anomaly: 47K visits at 00:00 avg time on page &mdash; needs investigation</div>
-          <div class="finding-desc">Two paid landing pages received a combined 47K pageviews in one month with an average time on page of <strong>00:00 seconds</strong>:
-            <br><br>
-            <strong>/lp/divorce-leads</strong> &mdash; 39,333 views, 00:00 time, 7.56% engagement<br>
-            <strong>/lp/investors (Facebook)</strong> &mdash; 7,310 views, 00:00 time, 4.33% engagement<br>
-            <br>
-            This data pattern is unusual and warrants investigation. There are several possible explanations &mdash; some benign, some not. <strong>We don&rsquo;t know the cause yet, but the numbers don&rsquo;t look right and it&rsquo;s worth digging into:</strong>
-            <br><br>
-            <strong>Scenario 1: Tracking misconfiguration.</strong> GA4 engagement timer may not be firing correctly on these LP templates. This is the simplest explanation and should be ruled out first &mdash; though it&rsquo;s worth noting that the Google Ads eviction LP (same template family) tracks fine at 00:25 avg time.
-            <br><br>
-            <strong>Scenario 2: Targeting/placement mismatch.</strong> Broad match keywords, display network inclusion, or Facebook Audience Network placements generating high-volume, zero-intent impressions from users who never meant to click.
-            <br><br>
-            <strong>Scenario 3: Click fraud / bot traffic.</strong> Competitors or bot farms clicking the ads and consuming budget. &ldquo;Divorce leads&rdquo; is a competitive, expensive keyword &mdash; click fraud is common in real estate data verticals.
-            <br><br>
-            <strong>Scenario 4: Budget cannibalization.</strong> If invalid clicks are consuming the daily ad budget early in the day, real prospects searching later never see the ads at all. The spend isn&rsquo;t just wasted &mdash; it&rsquo;s actively preventing real buyers from finding PropertyRadar.
-            <br><br>
-            <strong>The proof that the pages themselves work:</strong> the same eviction LP gets <strong>45.06% engagement and 00:25 avg time</strong> from Google Ads with UTM tracking, vs. 11.63% from another source. Same page, 4&times; the engagement. The page isn&rsquo;t broken &mdash; the traffic hitting it is.
-            <br><br>
-            <strong>How to diagnose:</strong>
-            <br>&bull; Check Google Ads <strong>hourly click distribution</strong> &mdash; if clicks spike early then flatline, the budget is being exhausted by bots before real prospects search
-            <br>&bull; Check the <strong>&ldquo;Invalid clicks&rdquo; column</strong> in Google Ads &mdash; compare what Google is catching vs. total clicks
-            <br>&bull; <strong>Compare GA4 sessions vs. Google Ads clicks</strong> for the same campaign &mdash; a large gap = invalid traffic
-            <br>&bull; Check if <strong>daily budget is hitting cap consistently</strong> &mdash; if yes, real searchers are being locked out
-            <br>&bull; Compare <strong>weekday vs. weekend</strong> click patterns &mdash; bots run 24/7, real searchers follow business hours
-            <br><br>
-            <strong>How to fix:</strong>
-            <br>&bull; <strong>ClickCease or Lunio</strong> &mdash; third-party click fraud detection, auto-blocks fraudulent IPs in real-time
-            <br>&bull; <strong>Cloudflare Turnstile</strong> on paid LPs &mdash; lightweight bot gate, filters automated traffic before it counts as a pageview
-            <br>&bull; <strong>Tighten campaign targeting</strong> &mdash; narrow geo, negative keywords, exclude display network on search campaigns
-            <br>&bull; <strong>Restrict Facebook to feed placements only</strong> &mdash; Audience Network is notorious for bot/accidental clicks
-            <br>&bull; <strong>Server-side conversion tracking</strong> &mdash; bots that don&rsquo;t execute JavaScript stop counting as visits
-            <br><br>
-            <strong>Why it matters:</strong> If even a fraction of these 47K visits are invalid, the cost adds up quickly. &ldquo;Divorce leads&rdquo; keywords typically run $8&ndash;15+ CPC in real estate verticals. This is separate from the SEO/GEO strategy, but diagnosing and resolving it could recover significant ad spend &mdash; or at minimum confirm the tracking is accurate and the campaigns are performing as expected.</div>
+          <div class="finding-title">Organic rankings slid throughout March &mdash; visibility is actively declining</div>
+          <div class="finding-desc">Average position worsened by 5.58 positions to 10.3 (page 2). Visibility dropped 12.59% in a single week. Impressions declined 5.07%. &ldquo;Commercial real estate database&rdquo; fell 23 positions. The organic foundation is eroding &mdash; the strategy below addresses the root causes.</div>
         </div>
       </div>
 
