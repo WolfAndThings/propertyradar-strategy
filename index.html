@@ -754,21 +754,39 @@
       <div class="finding" style="margin-top: 8px;">
         <div class="finding-icon fi-r">!</div>
         <div class="finding-body">
-          <div class="finding-title">Possible click fraud: 39K views with 00:00 avg time on page is not human behavior</div>
-          <div class="finding-desc">The /lp/divorce-leads page received 39,333 pageviews in one month with an average time on page of <strong>00:00 seconds</strong> and 7.56% engagement. The Facebook investor LP shows the same pattern: 7,310 views, 00:00 time, 4.33% engagement. Real humans don&rsquo;t land on a page and leave in zero seconds at this volume &mdash; this pattern is consistent with bot traffic or competitor click fraud on paid ads.
+          <div class="finding-title">Paid ad anomaly: 47K visits at 00:00 avg time on page &mdash; needs investigation</div>
+          <div class="finding-desc">Two paid landing pages received a combined 47K pageviews in one month with an average time on page of <strong>00:00 seconds</strong>:
             <br><br>
-            <strong>The tell:</strong> the same eviction LP gets 11.63% engagement from one traffic source but <strong>45.06% engagement and 00:25 avg time</strong> from Google Ads with UTM tracking. Same page, 4&times; the engagement. The page isn&rsquo;t broken &mdash; the traffic quality on certain ad campaigns is suspect. This means a portion of the ad budget is likely being consumed by invalid clicks, not real prospects.
+            <strong>/lp/divorce-leads</strong> &mdash; 39,333 views, 00:00 time, 7.56% engagement<br>
+            <strong>/lp/investors (Facebook)</strong> &mdash; 7,310 views, 00:00 time, 4.33% engagement<br>
+            <br>
+            This data pattern is unusual and warrants investigation. There are several possible explanations &mdash; some benign, some not. <strong>We don&rsquo;t know the cause yet, but the numbers don&rsquo;t look right and it&rsquo;s worth digging into:</strong>
             <br><br>
-            <strong>Recommended actions:</strong>
-            <br>&bull; <strong>Enable ClickCease or Lunio</strong> &mdash; third-party click fraud detection that auto-blocks fraudulent IPs from seeing ads in real-time. Industry standard for competitive verticals like real estate data.
-            <br>&bull; <strong>Audit Google Ads invalid click reports</strong> &mdash; Google refunds some detected invalid clicks automatically, but their threshold is conservative. Check the &ldquo;Invalid clicks&rdquo; column in Google Ads to see what&rsquo;s already being caught vs. what&rsquo;s slipping through.
-            <br>&bull; <strong>Add reCAPTCHA or Cloudflare Turnstile</strong> to paid landing pages &mdash; a lightweight bot gate that filters automated traffic before it registers as a pageview.
-            <br>&bull; <strong>Tighten targeting on the divorce/eviction campaigns</strong> &mdash; narrow geo, add negative keywords, exclude display network if running search+display hybrid campaigns.
-            <br>&bull; <strong>Compare GA4 vs. Google Ads click counts</strong> &mdash; a large gap between Google Ads reported clicks and GA4 sessions for the same campaign is a strong signal of invalid traffic.
-            <br>&bull; <strong>Review Facebook ad placements</strong> &mdash; Audience Network and in-stream placements are notorious for accidental/bot clicks. Restrict to Facebook/Instagram feeds only.
-            <br>&bull; <strong>Set up server-side conversion tracking</strong> &mdash; moves the conversion signal server-side so bots that don&rsquo;t execute JavaScript aren&rsquo;t counted as visits.
+            <strong>Scenario 1: Tracking misconfiguration.</strong> GA4 engagement timer may not be firing correctly on these LP templates. This is the simplest explanation and should be ruled out first &mdash; though it&rsquo;s worth noting that the Google Ads eviction LP (same template family) tracks fine at 00:25 avg time.
             <br><br>
-            This is separate from the SEO/GEO strategy but potentially represents significant wasted spend. Even if only 50% of the 39K divorce-leads visits are invalid, that&rsquo;s ~20K fraudulent clicks per month at whatever the CPC is for &ldquo;divorce leads&rdquo; (typically $8&ndash;15+ in real estate verticals).</div>
+            <strong>Scenario 2: Targeting/placement mismatch.</strong> Broad match keywords, display network inclusion, or Facebook Audience Network placements generating high-volume, zero-intent impressions from users who never meant to click.
+            <br><br>
+            <strong>Scenario 3: Click fraud / bot traffic.</strong> Competitors or bot farms clicking the ads and consuming budget. &ldquo;Divorce leads&rdquo; is a competitive, expensive keyword &mdash; click fraud is common in real estate data verticals.
+            <br><br>
+            <strong>Scenario 4: Budget cannibalization.</strong> If invalid clicks are consuming the daily ad budget early in the day, real prospects searching later never see the ads at all. The spend isn&rsquo;t just wasted &mdash; it&rsquo;s actively preventing real buyers from finding PropertyRadar.
+            <br><br>
+            <strong>The proof that the pages themselves work:</strong> the same eviction LP gets <strong>45.06% engagement and 00:25 avg time</strong> from Google Ads with UTM tracking, vs. 11.63% from another source. Same page, 4&times; the engagement. The page isn&rsquo;t broken &mdash; the traffic hitting it is.
+            <br><br>
+            <strong>How to diagnose:</strong>
+            <br>&bull; Check Google Ads <strong>hourly click distribution</strong> &mdash; if clicks spike early then flatline, the budget is being exhausted by bots before real prospects search
+            <br>&bull; Check the <strong>&ldquo;Invalid clicks&rdquo; column</strong> in Google Ads &mdash; compare what Google is catching vs. total clicks
+            <br>&bull; <strong>Compare GA4 sessions vs. Google Ads clicks</strong> for the same campaign &mdash; a large gap = invalid traffic
+            <br>&bull; Check if <strong>daily budget is hitting cap consistently</strong> &mdash; if yes, real searchers are being locked out
+            <br>&bull; Compare <strong>weekday vs. weekend</strong> click patterns &mdash; bots run 24/7, real searchers follow business hours
+            <br><br>
+            <strong>How to fix:</strong>
+            <br>&bull; <strong>ClickCease or Lunio</strong> &mdash; third-party click fraud detection, auto-blocks fraudulent IPs in real-time
+            <br>&bull; <strong>Cloudflare Turnstile</strong> on paid LPs &mdash; lightweight bot gate, filters automated traffic before it counts as a pageview
+            <br>&bull; <strong>Tighten campaign targeting</strong> &mdash; narrow geo, negative keywords, exclude display network on search campaigns
+            <br>&bull; <strong>Restrict Facebook to feed placements only</strong> &mdash; Audience Network is notorious for bot/accidental clicks
+            <br>&bull; <strong>Server-side conversion tracking</strong> &mdash; bots that don&rsquo;t execute JavaScript stop counting as visits
+            <br><br>
+            <strong>Why it matters:</strong> If even a fraction of these 47K visits are invalid, the cost adds up quickly. &ldquo;Divorce leads&rdquo; keywords typically run $8&ndash;15+ CPC in real estate verticals. This is separate from the SEO/GEO strategy, but diagnosing and resolving it could recover significant ad spend &mdash; or at minimum confirm the tracking is accurate and the campaigns are performing as expected.</div>
         </div>
       </div>
 
