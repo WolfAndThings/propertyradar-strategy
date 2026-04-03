@@ -754,6 +754,27 @@
       <div class="finding" style="margin-top: 8px;">
         <div class="finding-icon fi-r">!</div>
         <div class="finding-body">
+          <div class="finding-title">Possible click fraud: 39K views with 00:00 avg time on page is not human behavior</div>
+          <div class="finding-desc">The /lp/divorce-leads page received 39,333 pageviews in one month with an average time on page of <strong>00:00 seconds</strong> and 7.56% engagement. The Facebook investor LP shows the same pattern: 7,310 views, 00:00 time, 4.33% engagement. Real humans don&rsquo;t land on a page and leave in zero seconds at this volume &mdash; this pattern is consistent with bot traffic or competitor click fraud on paid ads.
+            <br><br>
+            <strong>The tell:</strong> the same eviction LP gets 11.63% engagement from one traffic source but <strong>45.06% engagement and 00:25 avg time</strong> from Google Ads with UTM tracking. Same page, 4&times; the engagement. The page isn&rsquo;t broken &mdash; the traffic quality on certain ad campaigns is suspect. This means a portion of the ad budget is likely being consumed by invalid clicks, not real prospects.
+            <br><br>
+            <strong>Recommended actions:</strong>
+            <br>&bull; <strong>Enable ClickCease or Lunio</strong> &mdash; third-party click fraud detection that auto-blocks fraudulent IPs from seeing ads in real-time. Industry standard for competitive verticals like real estate data.
+            <br>&bull; <strong>Audit Google Ads invalid click reports</strong> &mdash; Google refunds some detected invalid clicks automatically, but their threshold is conservative. Check the &ldquo;Invalid clicks&rdquo; column in Google Ads to see what&rsquo;s already being caught vs. what&rsquo;s slipping through.
+            <br>&bull; <strong>Add reCAPTCHA or Cloudflare Turnstile</strong> to paid landing pages &mdash; a lightweight bot gate that filters automated traffic before it registers as a pageview.
+            <br>&bull; <strong>Tighten targeting on the divorce/eviction campaigns</strong> &mdash; narrow geo, add negative keywords, exclude display network if running search+display hybrid campaigns.
+            <br>&bull; <strong>Compare GA4 vs. Google Ads click counts</strong> &mdash; a large gap between Google Ads reported clicks and GA4 sessions for the same campaign is a strong signal of invalid traffic.
+            <br>&bull; <strong>Review Facebook ad placements</strong> &mdash; Audience Network and in-stream placements are notorious for accidental/bot clicks. Restrict to Facebook/Instagram feeds only.
+            <br>&bull; <strong>Set up server-side conversion tracking</strong> &mdash; moves the conversion signal server-side so bots that don&rsquo;t execute JavaScript aren&rsquo;t counted as visits.
+            <br><br>
+            This is separate from the SEO/GEO strategy but potentially represents significant wasted spend. Even if only 50% of the 39K divorce-leads visits are invalid, that&rsquo;s ~20K fraudulent clicks per month at whatever the CPC is for &ldquo;divorce leads&rdquo; (typically $8&ndash;15+ in real estate verticals).</div>
+        </div>
+      </div>
+
+      <div class="finding" style="margin-top: 8px;">
+        <div class="finding-icon fi-r">!</div>
+        <div class="finding-body">
           <div class="finding-title">The core problem: 786K impressions, 1.3% CTR, average position 10.3</div>
           <div class="finding-desc">PropertyRadar is visible on 786K searches per month but sitting on page 2 for almost everything. Based on standard CTR curves, moving from position 10.3 to 7.0 on 786K impressions could approximately double organic clicks &mdash; before any new pages are even created. The strategy below targets exactly this: schema for rich results (higher CTR), content depth for ranking improvements (higher position), and GEO/AEO for AI citation visibility.</div>
         </div>
